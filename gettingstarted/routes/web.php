@@ -44,14 +44,28 @@ if($id == 1 ){
 }
 	return view('admin.edit',['post' =>$post]);
 })->name('admin.edit');
-Route::post('create',function(\Illuminate\Http\Request $request){
+Route::post('create',function(\Illuminate\Http\Request $request, \Illuminate\Validation\Factory $validator){
+	$validation = $validator->make($request->all(),[
+'title' => 'required|min:5',
+'content'=>'required|min:10'
+	]);
+	if ($validation->fails()) {
+		return redirect()->back()->withErrors($validation);
+	}
 	return redirect()->route('admin.index')->
 	with('info','post created, new Title is: '.$request->input('title'));
 
 })->name('admin.create');
-Route::post('edit',function(\Illuminate\Http\Request $request){
+Route::post('edit',function(\Illuminate\Http\Request $request ,  \Illuminate\Validation\Factory $validator){
+		$validation = $validator->make($request->all(),[
+'title' => 'required|min:5',
+'content'=>'required|min:10'
+	]);
+	if ($validation->fails()) {
+		return redirect()->back()->withErrors($validation);
+	}
 	return redirect()->route('admin.index')->
-	with('info','this post title has been edited to: '.$request->input('title'));
+	with('info','thi s post title has been edited to: '.$request->input('title'));
 })->name('admin.update');
 Route::post('testing',function(\Illuminate\Http\Request $request){
 	return redirect()->route('admin.index')->with('info','well this worked here is your fucking responce'. $request->input('title'));
