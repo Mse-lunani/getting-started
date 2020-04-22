@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'PostController@getIndex')->name('blog.index');
+Route::get('/', [
+'uses'=>'PostController@getIndex',
+'as'=> 'blog.index']);
+route::get('/jake','mypostController@getIndex');
 Route::get('post/{id?}',function($id=1){
 if($id == 1 ){
 	$post = [
