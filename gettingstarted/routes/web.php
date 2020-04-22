@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('blog.index');
-})->name('blog.index');
+Route::get('/', 'PostController@getIndex')->name('blog.index');
 Route::get('post/{id?}',function($id=1){
 if($id == 1 ){
 	$post = [
