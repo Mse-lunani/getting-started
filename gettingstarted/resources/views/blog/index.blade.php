@@ -11,6 +11,7 @@
         <div class="col-md-12 text-center">
         	<h1 class="post-title">{{ $post['title'] }}</h1>
             <p>{{$post['content']}}</p>
+             <p><strong></strong> <a href="{{ route('blog.post',['id' => array_search($post,$posts)]) }}">readmore</a></p>
         </div>
     </div>
     <hr>
